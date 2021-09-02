@@ -66,6 +66,7 @@ function cal() {
                             <td>&nbsp;</td>
                         </tr>
                     </tbody>
+                </form>
             </table>
 
             <div class="col-sm-12">
