@@ -59,6 +59,9 @@ Route::get('/deleteRecord/{id}',[App\Http\Controllers\PaymentController::class, 
 
 Route::post('/viewPatient',[App\Http\Controllers\PatientController::class, 'searchPatient'])->name('search.patient');
 
+Route::get('/pay',[App\Http\Controllers\PaymentController::class, 'pay'])->name('pay'); 
+
+
 Route::post('\checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
 
 Route::get('insertPatient', function()

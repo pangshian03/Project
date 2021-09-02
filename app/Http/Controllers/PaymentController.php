@@ -39,6 +39,11 @@ class PaymentController extends Controller
         Return view('showPayment')->with('payments',$payment);
     }
 
+    public function pay(){
+        $payment=Payment::all();
+        Return view('pay')->with('payments',$payment);
+    }
+
     public function delete($id){
         $delete=Payment::find($id);
         $delete->delete(); 
