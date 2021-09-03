@@ -36,7 +36,6 @@ Route::get('/insertBed', function () {
     return view('insertBed',['icNo' => App\Models\Patient::all()]);
 });
 
-
 Route::post('/insertBed/store',[App\Http\Controllers\BedController::class, 'store'])->name('addBed');
 
 Route::get('/viewBed',[App\Http\Controllers\BedController::class, 'view'])->name('viewBed');
@@ -55,19 +54,13 @@ Route::post('/makePayment/store', [App\Http\Controllers\PaymentController::class
 
 Route::get('/viewPayment',[App\Http\Controllers\PaymentController::class, 'view'])->name('viewPayment'); 
 
-Route::get('/deleteRecord/{id}',[App\Http\Controllers\PaymentController::class, 'delete'])->name('delete.Record');
+Route::get('/pay',[App\Http\Controllers\PaymentController::class, 'pay'])->name('pay'); 
+
+Route::get('/delete.Record/{id}',[App\Http\Controllers\PaymentController::class, 'delete'])->name('delete.Record');
 
 Route::post('/viewPatient',[App\Http\Controllers\PatientController::class, 'searchPatient'])->name('search.patient');
 
-Route::get('/pay',[App\Http\Controllers\PaymentController::class, 'pay'])->name('pay'); 
-
-
 Route::post('\checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
-
-Route::get('insertPatient', function()
-{
-    return view('insertPatient');
-});
 
 Route::get('insertBed', function()
 {
@@ -83,6 +76,10 @@ Route::get('Home', function()
 {
     return view('welcome');
 });
+
+Route::get('/allPayment',[App\Http\Controllers\PaymentController::class, 'showAllPayment'])->name('allPayment');
+
+Route::get('/paymentReport',[App\Http\Controllers\PaymentController::class, 'pdfReport'])->name('paymentReport');
 
 Auth::routes();
 

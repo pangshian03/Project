@@ -11,9 +11,29 @@ use App\Models\Payment;
 use App\Models\Patient;
 use Session;
 use Notification;
+use Auth;
+use PDF;
 
 class PaymentController extends Controller
-{
+{   
+    public function paymentPost(Request $request)
+    {
+ 
+	Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $request->sub*100,
+                "currency" => "MYR",
+                "source" => $request->stripeToken,
+                "description" => "This payment is testing purpose of Southern Hospital",
+        ]);
+
+      
+        $email='jiachenloo@gmail.com';
+        Notification::route('mail',$email)->notify(new \App\Notifications\paymentPaid($email));
+        Session::flash('success','Order Payment successfully!');
+        return back();
+    }
+        
     public function index(){
 
         Return view('makePayment');
@@ -28,10 +48,6 @@ class PaymentController extends Controller
         ]);
         Session::flash('success',"Payment added successful!");
         Return redirect()->route('viewPayment');
-
-        $email='jiachenloo@gmail.com';
-        Notification::route('mail',$email)->notify(new \App\Notifications\paymentPaid($email));
-       
     }
 
     public function view(){
@@ -45,23 +61,36 @@ class PaymentController extends Controller
     }
 
     public function delete($id){
-        $delete=Payment::find($id);
-        $delete->delete(); 
+        $r=request();
+        $payments=DB::table('payments')
+        ->where('payments.id', '=', $id)
+        ->delete();
+      
         Session::flash('danger',"Payment deleted successful!");
         Return redirect()->route('viewPayment');
     }
 
-    public function paymentPost(Request $request)
-    {
-	       
-	Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        Stripe\Charge::create ([
-                "amount" => $request->sub*100,
-                "currency" => "MYR",
-                "source" => $request->stripeToken,
-                "description" => "This payment is testing purpose of Southern Hospital",
-        ]);
-           
-        return back();
+    public function showAllPayment(){
+        $payments=DB::table('payments')
+       
+        ->select('payments.id','payments.icNo','payments.amount','payments.note','payments.created_at')
+        ->paginate(5);
+        Return view('myPayment')->with('payments',$payments);
+    }    
+
+    public function pdfReport(){
+            
+        $payments=DB::table('payments')
+
+        ->select('payments.id','payments.icNo','payments.amount','payments.created_at')
+        ->get();
+        $pdf= PDF::loadView('paymentReport', compact('payments'));
+
+        return $pdf->download('report.pdf');
+    }   
+    
+    public function __construct(){
+        $this->middleware('auth'); 
     }
+ 
 }
