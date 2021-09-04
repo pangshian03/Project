@@ -18,7 +18,7 @@ class PaymentController extends Controller
 {   
     public function paymentPost(Request $request)
     {
- 
+        
 	Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
                 "amount" => $request->sub*100,
@@ -26,10 +26,13 @@ class PaymentController extends Controller
                 "source" => $request->stripeToken,
                 "description" => "This payment is testing purpose of Southern Hospital",
         ]);
-        $delete=DB::table('payments')
-        ->where('payments.id','=', $request->cid)
-        ->delete();
-      
+   
+        $items = $request->input('cid');
+        foreach ($items as $item => $value) {
+            $payments = Payment::find($value); 
+            $payments->delete();
+        }
+
         $email='jiachenloo@gmail.com';
         Notification::route('mail',$email)->notify(new \App\Notifications\paymentPaid($email));
         Session::flash('success','Order Payment successfully!');
