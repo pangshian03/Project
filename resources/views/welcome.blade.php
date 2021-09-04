@@ -1,16 +1,25 @@
 @extends('layout')
 @section('content')
+<script>
+    function addWelcomeText () {
+            const text = document.getElementById("welcome-text");
+            text.classList.add("landing-page-text");
+            text.style.color = "white";
+            text.innerHTML = "Welcome to our Hospital System";
+        }
+    addWelcomeText();
+</script>
 <div class="container">
     <div class="icons bg-light">
-        <div class="row p-2">
+    <div class="row p-2">
             <div class="text-center col-4 p-5">
-                <a href="" class="nav-link text-dark"><i class="fa fa-wheelchair fa-4x text-warning"></i><br>Patient</a>
+                <a href="insertPatient" class="nav-link text-dark"><i class="fa fa-wheelchair fa-4x text-warning"></i><br>Patient</a>
             </div>
             <div class="text-center col-4 p-5">
-                <a href="#" class="nav-link text-dark"><i class="fa fa-bed fa-4x text-danger"></i><br>Hospital Bed</a>
+                <a href="insertBed" class="nav-link text-dark"><i class="fa fa-bed fa-4x text-danger"></i><br>Hospital Bed</a>
             </div>
             <div class="text-center col-4 p-5 text-black">
-                <a href="#" class="nav-link text-dark"><i class="fa fa-user-circle-o fa-4x text-info"></i><br>Admin</a>
+                <a href="makePayment" class="nav-link text-dark"><i class="fa fa-cc-stripe fa-4x text-info"></i><br>Payment</a>
             </div>
         </div>
         <div class="row p-2">

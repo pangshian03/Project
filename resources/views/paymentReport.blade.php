@@ -2,6 +2,24 @@
 <html>
 <head>
     <title>Southern Cart</title>
+
+    <style>
+        table {
+            border: 1px solid black;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
     
