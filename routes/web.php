@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/insertPatient', function () {
-    return view('insertPatient');
-});
 
 Route::get('/insertPatient', [App\Http\Controllers\PatientController::class, 'index'])->name('insertPatient');
 
@@ -53,8 +50,6 @@ Route::get('/makePayment', function () {
 Route::post('/makePayment/store', [App\Http\Controllers\PaymentController::class, 'store'])->name('addPayment');
 
 Route::get('/viewPayment',[App\Http\Controllers\PaymentController::class, 'view'])->name('viewPayment'); 
-
-Route::get('/pay',[App\Http\Controllers\PaymentController::class, 'pay'])->name('pay'); 
 
 Route::get('/delete.Record/{id}',[App\Http\Controllers\PaymentController::class, 'delete'])->name('delete.Record');
 

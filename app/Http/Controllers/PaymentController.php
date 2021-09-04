@@ -26,7 +26,9 @@ class PaymentController extends Controller
                 "source" => $request->stripeToken,
                 "description" => "This payment is testing purpose of Southern Hospital",
         ]);
-
+        $delete=DB::table('payments')
+        ->where('payments.id','=', $request->cid)
+        ->delete();
       
         $email='jiachenloo@gmail.com';
         Notification::route('mail',$email)->notify(new \App\Notifications\paymentPaid($email));
@@ -55,11 +57,6 @@ class PaymentController extends Controller
         Return view('showPayment')->with('payments',$payment);
     }
 
-    public function pay(){
-        $payment=Payment::all();
-        Return view('pay')->with('payments',$payment);
-    }
-
     public function delete($id){
         $r=request();
         $payments=DB::table('payments')
@@ -72,7 +69,6 @@ class PaymentController extends Controller
 
     public function showAllPayment(){
         $payments=DB::table('payments')
-       
         ->select('payments.id','payments.icNo','payments.amount','payments.note','payments.created_at')
         ->paginate(5);
         Return view('myPayment')->with('payments',$payments);

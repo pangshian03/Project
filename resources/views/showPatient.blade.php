@@ -12,8 +12,7 @@
 @endif
 <div class="container">
     <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <table class="table">
                 <h3 class="text-center p-3">Patient List</h3>
                 <thead>
@@ -48,7 +47,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col-sm-1"></div>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="id" class="form-label">ID</label>
-                    <input type="text" class="form-control" id="id" name="id">
+                    <input type="number" class="form-control" id="id" name="id" min="1">
                 </div>
                 <button type="submit" class="btn btn-primary mb-3" style="margin-left: 46%;">Submit</button>
             </form>
