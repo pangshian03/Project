@@ -70,15 +70,8 @@ class PatientController extends Controller
         $keyword=$r->keyword;
         $patient=DB::table('patients')
         ->where('patients.icNo','like','%'.$keyword.'%')
-        ->orWhere('patients.gender','like','%'.$keyword.'%')
-        ->get();  
-
-        $r->validate([
-            'query' => 'exists:patients,male',
-        ]);
-        $query = $r->input('male');
-        $patients = Patient::where('gender',$query)->get();
-        $gender = $r->input('female', '$male');
+        ->orWhere('patients.gender','like', $keyword)
+        ->get();
 
         Return view('showPatient')->with('patients',$patient);
        

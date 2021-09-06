@@ -69,16 +69,16 @@
                     <img src="data:image/png;base64,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"
                         alt="" class="rounded-circle" width="70">&nbsp
                     <p class="navbar-brand" style="font-size: 22px;color: white;">Southern Hospital</p>
-                    <a class="nav-link ml-3" href="Home">HOME</a>
-                    <a class="nav-link ml-5" href="insertPatient">PATIENT</a>
-                    <a class="nav-link ml-5" href="insertBed">HOSPITAL BED</a>
-                    <a class="nav-link ml-5" href="makePayment">PAYMENT</a>
+                    <a class="nav-link ml-3" href="/Home">HOME</a>
+                    <a class="nav-link ml-5" href="/insertPatient">PATIENT</a>
+                    <a class="nav-link ml-5" href="/insertBed">HOSPITAL BED</a>
+                    <a class="nav-link ml-5" href="/makePayment">PAYMENT</a>
 
                     <form class="form-inline my-2 my-lg-0 ml-5" action="{{route('search.patient')}}" method="post">
                         @csrf
                         <input class="form-control" type="search" name="keyword" id="keyword" placeholder="Search here"
                             aria-label="search">
-                        <button class="btn btn-outline-dark my-2 my-sm-0 ml-2" type="submit"><i
+                        <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit"><i
                                 class="fa fa-search"></i></button>
                     </form>
                 </div>
