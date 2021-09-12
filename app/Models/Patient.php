@@ -10,7 +10,7 @@ class Patient extends Model
     use HasFactory;
     protected $primaryKey='icNo';
     protected $fillable=['icNo', 'name', 'gender', 'age', 'address', 'phoneNo'];
-
+    public $incrementing = false;
     public function bed()
     {
         return $this->hasOne(Bed::class);
